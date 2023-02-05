@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <div class="container">
+  <div class="container" id="cont">
     <div class="meals">
       <h1 class="head">
         Find Meals For Your Ingredient
@@ -27,27 +27,27 @@
         </button>
       </div>
 
-      <h1 class="res">You Search Results:</h1>
+      <h1 class="res">Your Search Results:</h1>
 
     </div>
 
 
 
 
-    <div class="meal-result" id="meal-result">
+    <div class="meal-result" id="meal-result" style="z-index: 1;">
        <!-- <div id="meal">
           <img src="PotatoChips.jpeg" class="image" alt="food">
         <div class="meal-name">
           <h3>Potato chips</h3>
-          <a href="#" class="get-recipie" id="get-recipie">Get Recipie</a>
+          <a href="#" class="get-recipe" id="get-recipe">Get recipe</a>
         </div>
       </div> -->
     </div>
 
 
 
-    <div class="meal-details">
-      <!-- <button class="close recipie-close" id="recipie-close-btn">
+    <div class="meal-details hidden" id="meal-details" style="z-index: 2;">
+      <!-- <button class="close recipe-close" id="recipe-close-btn">
         <i class="fas fa-times btn-close"></i>
       </button>
       <div class="details-content">
@@ -58,7 +58,7 @@
           Category Name
         </div>
         <h3>Instructions</h3>
-        <div class="detail-recipie">
+        <div class="detail-recipe">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam accusantium necessitatibus minus eum alias odit et! Ad labore similique eos quos cumque earum iste? Blanditiis dolore quis ullam obcaecati eveniet?
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea quis beatae, amet soluta odit maiores omnis fugit esse aliquid animi fuga quia hic accusantium, perspiciatis ducimus harum nesciunt ratione dolorum.
           </div>

@@ -10,6 +10,8 @@ body{
     /* overflow-x: hidden; */
 }
 
+
+
 :root{
     --dark_green : #449d59;
     --light_green : #a0f02c;
@@ -17,6 +19,29 @@ body{
 .head{
     color: var(--dark_green);
 }
+
+::-webkit-scrollbar {
+    width: 17px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: #b9e47998;
+   
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(37, 161, 18, 0.544); 
+    border-radius: 5px;
+   
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #077b11b1; 
+  }
+
 .meals{
     display: flex;
     flex-direction: column;
@@ -67,7 +92,7 @@ body{
     padding-top: 0;
     height: 100px;
 }
-.get-recipie{
+.get-recipe{
     width: 40px;
     height: 30px;
     padding: 7px;
@@ -100,28 +125,36 @@ body{
 }
 
 .meal-details{
-    display: flex;
-    flex-direction: column;
-    /* background-color: #88e003; */
+    opacity: 1 !important;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #87e003 ; 
     width: 350px;
-    height: 100%;
     text-align: center;
     border-radius: 50px;
-    margin: auto;
+    width: 450px;
+    height: auto;
     padding: 30px;
+    z-index: 2;
 }
-.recipie-close{
+.recipe-close{
     position: absolute;
-    right:35vw;
+    right:45px;
     background:transparent;
     border: none;
     color: white;
+    cursor: pointer;
+    width: 40px;
 }
+
 .detail-category{
     background-color: white;
     color: var(--dark_green);
     border-radius: 50px;
-    width: 150px;
+    width: fit-content;
+    padding: 0 20px;
     font-size: 0.8rem;
     margin: auto;
     margin-top: 20px;
@@ -139,7 +172,7 @@ body{
     font-weight: bold;
     font-size: 25px;
 }
-.detail-recipie{
+.detail-recipe{
     font-size: 0.8rem;
     line-height: 0.9rem;
     font-family: 'Roboto', sans-serif;
@@ -163,7 +196,9 @@ body{
 
 
 
-
+.hidden{
+    display: none;
+}
 
 .showRecipe{
     display: block;

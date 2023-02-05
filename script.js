@@ -1,16 +1,14 @@
 const searchBtn = document.getElementById('search-btn');
 const mealList = document.getElementById('meal-result');
-const recipeCloseBtn = document.getElementById('recipe-close-btn');
-const mealDetailsContent = document.querySelector('.meal-details');
+
+const mealDetailsContent = document.getElementById('meal-details');
 
 // event listeners
 
 searchBtn.addEventListener('click', getMealList);
 mealList.addEventListener('click', getMealRecipe);
 
-recipeCloseBtn.addEventListener('click' , ()=>{
-    mealDetailsContent.parentElement.classList.remove('showRecipie');
-});
+
 
 // get the list of meals with this ingredient 
 
@@ -37,7 +35,7 @@ function getMealList(){
                    <img src="${meal.strMealThumb}" class="image" alt="food"/>
                  <div class="meal-name">
                    <h3>${meal.strMeal}</h3>
-                   <a href="#" class="get-recipie" id="get-recipie">Get Recipe</a>
+                   <a href="#" class="get-recipe" id="get-recipe">Get Recipe</a>
                  </div>
                  </div>
                 </div>
@@ -50,7 +48,7 @@ function getMealList(){
             mealList.classList.remove('notFound');
         }
         else{
-            html= "Sorry, no recipies found with this ingredient :(";
+            html= "Sorry, no recipes found with this ingredient :(";
             mealList.classList.add('notFound');
         }
 
@@ -63,28 +61,30 @@ function getMealList(){
 
 
 
-// onclick of get recipie
+// onclick of get recipe
 function getMealRecipe(e){
-    e.preventDefault()
-    // to prevent default actio of html page
-    if(e.target.classList.contains('recipie-btn')){
-        let mealItem = e.target.parentElement.parentElement;
-        fetch (`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.id}`)
+    e.preventDefault();
+    // to prevent default action of html page
+    if(e.target.classList.contains('get-recipe')){
+        let mealItem = e.target.parentElement.parentElement.getAttribute('data-id');
+        console.log(e.target.parentElement.parentElement.getAttribute('data-id'));
+        fetch (`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem}`)
         .then(response =>response.json())
-        .then(data => mealRecipeModal(data.meals));
+        .then(data => mealRecipeModal(data.meals[0]));
 
     }
     console.log('clicked');
 
 }
 
+
 // the data to be displayed
 function mealRecipeModal(meal){
     console.log(meal);
-    meal=meal[0];
+    
     let html = `
-        <button class="close recipie-close" id="recipie-close">
-        <i class="fas fa-times btn-close"></i>
+        <button class="close recipe-close" id="recipe-close-btn">
+        <i class="fas fa-times btn-close" "></i>
         </button>
         <div class="details-content">
         <div class="detail-title">
@@ -94,7 +94,7 @@ function mealRecipeModal(meal){
             ${meal.strCategory}
         </div>
         <h3>Instructions :</h3>
-        <div class="detail-recipie">
+        <div class="detail-recipe">
         ${meal.strInstructions}
             </div>
         <div class="detail-image">
@@ -106,8 +106,18 @@ function mealRecipeModal(meal){
         </div>
     `;
     mealDetailsContent.innerHTML =html;
+    const recipeCloseBtn = document.getElementById('recipe-close-btn');
+    recipeCloseBtn.addEventListener('click' , ()=>{
+        mealDetailsContent.classList.remove('showRecipe');
+        mealDetailsContent.classList.add('hidden');
+        document.body.style.backgroundColor='white';
+        document.body.style.opacity='1';
+    });
+
     // the outer block's content is now the one displayed in 'html' variable
-    mealDetailsContent.parentElement.classList.add('showRecipie');
+    mealDetailsContent.classList.add('showRecipe');
+    document.body.style.backgroundColor='#808080';
+    document.body.style.opacity='0.4';
 
 }
 
