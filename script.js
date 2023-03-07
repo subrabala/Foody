@@ -116,8 +116,7 @@ function mealRecipeModal(meal){
 
     // the outer block's content is now the one displayed in 'html' variable
     mealDetailsContent.classList.add('showRecipe');
-    document.body.style.backgroundColor='#808080';
-    document.body.style.opacity='0.4';
+    
 
 }
 
